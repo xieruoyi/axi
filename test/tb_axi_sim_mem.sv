@@ -99,10 +99,8 @@ module tb_axi_sim_mem #(
       aw_beat.ax_size = $clog2(StrbWidth);
       aw_beat.ax_burst = axi_pkg::BURST_INCR;
       // Make sure that the burst does not cross a 4KiB boundary.
-      if (axi_pkg::beat_addr(aw_beat.ax_addr, aw_beat.ax_size, aw_beat.ax_len, aw_beat.ax_burst, 0) >> 12 == (
-          axi_pkg::beat_addr(aw_beat.ax_addr, aw_beat.ax_size, aw_beat.ax_len, aw_beat.ax_burst, aw_beat.ax_len)
-          + axi_pkg::beat_upper_byte(aw_beat.ax_addr, aw_beat.ax_size, aw_beat.ax_len, aw_beat.ax_burst, StrbWidth, aw_beat.ax_len)
-        ) >> 12) begin
+      if (axi_pkg::beat_addr(aw_beat.ax_addr, aw_beat.ax_size, aw_beat.ax_len, aw_beat.ax_burst, 0) >> 12 ==
+          axi_pkg::beat_addr(aw_beat.ax_addr, aw_beat.ax_size, aw_beat.ax_len, aw_beat.ax_burst, aw_beat.ax_len) >> 12) begin
         break;
       end
     end
@@ -133,10 +131,8 @@ module tb_axi_sim_mem #(
       ar_beat.ax_size = aw_beat.ax_size;
       ar_beat.ax_burst = aw_beat.ax_burst;
       // Make sure that the burst does not cross a 4KiB boundary.
-      if (axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, 0) >> 12 == (
-          axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, ar_beat.ax_len)
-          + axi_pkg::beat_upper_byte(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, StrbWidth, ar_beat.ax_len)
-        ) >> 12) begin
+      if (axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, 0) >> 12 ==
+          axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, ar_beat.ax_len) >> 12) begin
         break;
       end
     end

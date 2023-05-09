@@ -883,10 +883,8 @@ package axi_test;
             addr + len <= mem_region.addr_end;
           }; assert(rand_success);
 
-          if (axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, 0) >> 12 == (
-              axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, ax_beat.ax_len)
-              + axi_pkg::beat_upper_byte(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, AXI_STRB_WIDTH, ax_beat.ax_len)
-            ) >> 12) begin
+          if (axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, 0) >> 12 ==
+              axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, ax_beat.ax_len) >> 12) begin
             break;
           end
         end
@@ -912,10 +910,8 @@ package axi_test;
             addr + ((len + 1) << size) <= mem_region.addr_end;
           }; assert(rand_success);
 
-          if (axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, 0) >> 12 == (
-              axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, ax_beat.ax_len)
-              + axi_pkg::beat_upper_byte(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, AXI_STRB_WIDTH, ax_beat.ax_len)
-            ) >> 12) begin
+          if (axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, 0) >> 12 ==
+              axi_pkg::beat_addr(addr, ax_beat.ax_size, ax_beat.ax_len, ax_beat.ax_burst, ax_beat.ax_len) >> 12) begin
             break;
           end
         end
@@ -999,10 +995,8 @@ package axi_test;
             beat.ax_burst = axi_pkg::BURST_INCR;
           end
           // Make sure that the burst does not cross a 4KiB boundary.
-          if (axi_pkg::beat_addr(beat.ax_addr, beat.ax_size, beat.ax_len, beat.ax_burst, 0) >> 12 == (
-              axi_pkg::beat_addr(beat.ax_addr, beat.ax_size, beat.ax_len, beat.ax_burst, beat.ax_len)
-              + axi_pkg::beat_upper_byte(beat.ax_addr, beat.ax_size, beat.ax_len, beat.ax_burst, AXI_STRB_WIDTH, beat.ax_len)
-            ) >> 12) begin
+          if (axi_pkg::beat_addr(beat.ax_addr, beat.ax_size, beat.ax_len, beat.ax_burst, 0) >> 12 ==
+              axi_pkg::beat_addr(beat.ax_addr, beat.ax_size, beat.ax_len, beat.ax_burst, beat.ax_len) >> 12) begin
             break;
           end
         end
@@ -1037,10 +1031,8 @@ package axi_test;
           ar_beat.ax_addr = ar_beat.ax_addr & ~(n_bytes-1);
         end
         // Make sure that the burst does not cross a 4KiB boundary.
-        if (axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, 0) >> 12 == (
-            axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, ar_beat.ax_len)
-            + axi_pkg::beat_upper_byte(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, AXI_STRB_WIDTH, ar_beat.ax_len)
-          ) >> 12) begin
+        if (axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, 0) >> 12 ==
+            axi_pkg::beat_addr(ar_beat.ax_addr, ar_beat.ax_size, ar_beat.ax_len, ar_beat.ax_burst, ar_beat.ax_len) >> 12) begin
           break;
         end
       end
