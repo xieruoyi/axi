@@ -64,6 +64,7 @@ import cf_math_pkg::idx_width;
 `ifdef VCS
   , localparam int unsigned MstPortsIdxWidth =
       (Cfg.NoMstPorts == 32'd1) ? 32'd1 : unsigned'($clog2(Cfg.NoMstPorts))
+  //NoMstPorts 2
 `endif
 ) (
   /// Clock, positive edge triggered.
@@ -289,6 +290,7 @@ import cf_math_pkg::idx_width;
   for (genvar i = 0; i < Cfg.NoMstPorts; i++) begin : gen_mst_port_mux
     axi_mux #(
       .SlvAxiIDWidth ( Cfg.AxiIdWidthSlvPorts ), // ID width of the slave ports
+      //5 -> 4
       .slv_aw_chan_t ( slv_aw_chan_t          ), // AW Channel Type, slave ports
       .mst_aw_chan_t ( mst_aw_chan_t          ), // AW Channel Type, master port
       .w_chan_t      ( w_chan_t               ), //  W Channel Type, all ports
